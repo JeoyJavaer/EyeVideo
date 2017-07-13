@@ -5,6 +5,8 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_main.*
 import lech.eyevideo.R
+import lech.eyevideo.R.id.toolbar
+import lech.eyevideo.R.id.tvTitle
 import lech.eyevideo.ui.fragment.DiscoveryFragment
 import lech.eyevideo.ui.fragment.HomeFragment
 import lech.eyevideo.ui.fragment.HotFragment
@@ -47,10 +49,18 @@ class MainActivity : BaseActivity() {
 
             }
         }
+
+
+        imageView.setOnClickListener {
+
+                showSearch()
+
+        }
     }
 
     private fun initTitle() {
         toolbar.title=""
+        imageView.setImageResource(R.drawable.ic_search)
         setSupportActionBar(toolbar)
     }
 
@@ -83,18 +93,22 @@ class MainActivity : BaseActivity() {
         if (0 == index) {
             tvTitle.text = dayString
             transaction.show(mHomeFragment)
+            imageView.setImageResource(R.drawable.ic_search)
             shouldShowSettingIcon=false
         } else if (1 == index) {
             tvTitle.text = discoveryString
             transaction.show(mDiscoveryFragment)
+            imageView.setImageResource(R.drawable.ic_search)
             shouldShowSettingIcon=false
         } else if (2 == index) {
             tvTitle.text = hotString
             transaction.show(mHotFragment)
+            imageView.setImageResource(R.drawable.ic_search)
             shouldShowSettingIcon=false
         } else if (3 == index) {
             tvTitle.text = mineString
             transaction.show(mMineFragment)
+            imageView.setImageResource(R.drawable.ic_settings_black_24dp)
             shouldShowSettingIcon=true
         }
 
@@ -104,36 +118,21 @@ class MainActivity : BaseActivity() {
 
     override fun getLayoutID(): Int = R.layout.activity_main
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main,menu)
-        return true
-    }
 
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == R.id.menu_search) {
-            showSearch()
-            return  true
-        }
 
-        return super.onOptionsItemSelected(item)
-    }
+
 
     private fun showSearch() {
-        toast("展示搜索")
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         if (shouldShowSettingIcon) {
-            menu?.findItem(R.id.menu_search)?.setVisible(false)
-            menu?.findItem(R.id.menu_setting)?.setVisible(true)
+            toast("展示设置")
         } else {
-            menu?.findItem(R.id.menu_search)?.setVisible(true)
-            menu?.findItem(R.id.menu_setting)?.setVisible(false)
-        }
 
-        return super.onPrepareOptionsMenu(menu)
+            toast("展示搜索")
+        }
     }
+
+
 
 
 }
