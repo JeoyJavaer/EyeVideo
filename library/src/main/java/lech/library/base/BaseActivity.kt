@@ -15,17 +15,14 @@ import android.support.v7.app.AppCompatActivity
         doBeforeSetContentView()
         setContentView(getLayoutID())
         doAfterSetContentView()
+        init()
 
-        initEvent()
-        initData()
     }
 
     open fun doAfterSetContentView() {}
 
 
-    abstract fun initData()
-
-    abstract fun initEvent()
+    abstract fun init()
 
 
 

@@ -1,6 +1,7 @@
 package lech.library.base
 
 import android.app.Application
+import lech.library.delegate.DelegateExtensions
 
 /**
  * Created by Android_61 on 2017/7/13.
@@ -8,9 +9,12 @@ import android.app.Application
  * Others
  */
 abstract class BaseApp : Application() {
-
+    companion object{
+        var instance:BaseApp by DelegateExtensions.notNullSingleValue<BaseApp>()
+    }
     override fun onCreate() {
         super.onCreate()
+        instance=this
         doInit()
     }
 

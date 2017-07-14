@@ -24,7 +24,7 @@ class HomeFragment :BaseFragment(),HomeContract.View{
        return inflater.inflate(R.layout.fragment_home,container,false)
     }
 
-    override fun initView() {
+    override fun init() {
 
     }
 }

@@ -1,5 +1,7 @@
 package lech.library.base
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -21,8 +23,13 @@ abstract class BaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
+        init()
     }
 
-    abstract fun initView()
+    abstract fun init()
+
+    open fun myStartActivity(clazz: Class<in Activity>,bundle: Bundle= Bundle.EMPTY){
+        val intent = Intent(context, clazz)
+        activity.startActivity(intent,bundle)
+    }
 }

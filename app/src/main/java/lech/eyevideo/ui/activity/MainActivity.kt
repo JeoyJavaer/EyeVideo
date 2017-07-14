@@ -1,14 +1,14 @@
 package lech.eyevideo.ui.activity
 
+import android.os.SystemClock
+import android.view.KeyEvent
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_main.*
 import lech.eyevideo.R
-import lech.eyevideo.ui.fragment.DiscoveryFragment
-import lech.eyevideo.ui.fragment.HomeFragment
-import lech.eyevideo.ui.fragment.HotFragment
-import lech.eyevideo.ui.fragment.MineFragment
+import lech.eyevideo.ui.fragment.*
 import lech.library.base.BaseActivity
 import org.jetbrains.anko.toast
+import java.util.*
 
 class MainActivity : BaseActivity() {
     var mHomeFragment: HomeFragment? = null
@@ -19,18 +19,25 @@ class MainActivity : BaseActivity() {
     val discoveryString = "Discovery"
     val hotString = "Ranking"
     val mineString = ""
-    var shouldShowSettingIcon=true
-
+    var shouldShowSettingIcon = false
+    lateinit var mSearchFragment: SearchFragment
+    var mExitTime:Long=0
 
 
     private fun getTodayString(): String {
-        return "Tuesday"
+        val list = arrayOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+        val data: Date = Date()
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.time = data
+        var index: Int = calendar.get(Calendar.DAY_OF_WEEK) - 1
+        if (index < 0) {
+            index = 0
+        }
+        return list[index]
     }
 
 
-    override fun initData() {}
-
-    override fun initEvent() {
+    override fun init() {
         initTitle()
         initFragment()
 
@@ -49,13 +56,13 @@ class MainActivity : BaseActivity() {
 
         imageView.setOnClickListener {
 
-                showSearch()
+            showSearch()
 
         }
     }
 
     private fun initTitle() {
-        toolbar.title=""
+        toolbar.title = ""
         imageView.setImageResource(R.drawable.ic_search)
         setSupportActionBar(toolbar)
     }
@@ -76,7 +83,7 @@ class MainActivity : BaseActivity() {
                 .hide(mMineFragment)
                 .show(mHomeFragment)
                 .commitAllowingStateLoss()
-        tvTitle.text=dayString
+        tvTitle.text = dayString
     }
 
     private fun show(index: Int) {
@@ -90,22 +97,22 @@ class MainActivity : BaseActivity() {
             tvTitle.text = dayString
             transaction.show(mHomeFragment)
             imageView.setImageResource(R.drawable.ic_search)
-            shouldShowSettingIcon=false
+            shouldShowSettingIcon = false
         } else if (1 == index) {
             tvTitle.text = discoveryString
             transaction.show(mDiscoveryFragment)
             imageView.setImageResource(R.drawable.ic_search)
-            shouldShowSettingIcon=false
+            shouldShowSettingIcon = false
         } else if (2 == index) {
             tvTitle.text = hotString
             transaction.show(mHotFragment)
             imageView.setImageResource(R.drawable.ic_search)
-            shouldShowSettingIcon=false
+            shouldShowSettingIcon = false
         } else if (3 == index) {
             tvTitle.text = mineString
             transaction.show(mMineFragment)
             imageView.setImageResource(R.drawable.ic_settings)
-            shouldShowSettingIcon=true
+            shouldShowSettingIcon = true
         }
 
         transaction.commitAllowingStateLoss()
@@ -115,20 +122,31 @@ class MainActivity : BaseActivity() {
     override fun getLayoutID(): Int = R.layout.activity_main
 
 
-
-
-
-
     private fun showSearch() {
         if (shouldShowSettingIcon) {
             toast("展示设置")
         } else {
-
+            mSearchFragment = SearchFragment()
+            mSearchFragment.show(fragmentManager, "SearchFragment")
             toast("展示搜索")
         }
     }
 
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (System.currentTimeMillis().minus(mExitTime) < 3000) {
+                finish()
+            } else {
+                toast("再按一次退出应用")
+                mExitTime=System.currentTimeMillis()
+            }
+            return true
+        } else {
+            return super.onKeyDown(keyCode, event)
+        }
 
+
+    }
 
 
 }

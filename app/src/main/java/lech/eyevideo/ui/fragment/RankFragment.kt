@@ -8,17 +8,15 @@ import lech.eyevideo.R
 import lech.library.base.BaseFragment
 
 /**
- * Created by Android_61 on 2017/7/13.
+ * Created by Android_61 on 2017/7/14.
  * Description
  * Others
  */
-class  DiscoveryFragment : BaseFragment(){
+class RankFragment :BaseFragment(){
     override fun getLayoutView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
        return inflater.inflate(R.layout.recyclerview,container,false)
     }
 
     override fun init() {
-
     }
-
 }

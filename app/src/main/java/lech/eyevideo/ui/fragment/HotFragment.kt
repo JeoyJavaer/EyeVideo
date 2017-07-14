@@ -17,7 +17,7 @@ class HotFragment : BaseFragment(){
         return inflater.inflate(R.layout.recyclerview,container,false)
     }
 
-    override fun initView() {
+    override fun init() {
 
 
     }
