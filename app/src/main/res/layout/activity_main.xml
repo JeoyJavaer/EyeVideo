@@ -14,6 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
+    <View
+        android:background="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
     <RadioGroup
         android:id="@+id/rgMain"
         android:layout_width="match_parent"
@@ -22,19 +26,23 @@
         <RadioButton
             android:id="@+id/rbHome"
             android:text="@string/home"
+            android:drawableTop="@drawable/home_bg_selected"
             style="@style/main_tab_bottom"/>
         <RadioButton
             android:id="@+id/rbDiscovery"
             android:text="@string/discovery"
+            android:drawableTop="@drawable/find_bg_selected"
             style="@style/main_tab_bottom"
             />
         <RadioButton
             android:id="@+id/rbHot"
             android:text="@string/hot"
+            android:drawableTop="@drawable/find_bg_selected"
             style="@style/main_tab_bottom"/>
         <RadioButton
             android:id="@+id/rbMine"
             android:text="@string/mine"
+            android:drawableTop="@drawable/mine_bg_selected"
             style="@style/main_tab_bottom"/>
     </RadioGroup>
 

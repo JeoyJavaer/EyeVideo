@@ -1,12 +1,8 @@
 package lech.eyevideo.ui.activity
 
-import android.view.Menu
-import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_main.*
 import lech.eyevideo.R
-import lech.eyevideo.R.id.toolbar
-import lech.eyevideo.R.id.tvTitle
 import lech.eyevideo.ui.fragment.DiscoveryFragment
 import lech.eyevideo.ui.fragment.HomeFragment
 import lech.eyevideo.ui.fragment.HotFragment
@@ -108,7 +104,7 @@ class MainActivity : BaseActivity() {
         } else if (3 == index) {
             tvTitle.text = mineString
             transaction.show(mMineFragment)
-            imageView.setImageResource(R.drawable.ic_settings_black_24dp)
+            imageView.setImageResource(R.drawable.ic_settings)
             shouldShowSettingIcon=true
         }
 
