@@ -7,5 +7,5 @@ package lech.eyevideo.base
  */
 interface BasePresenter {
 
-    fun onStart()
+    fun start()
 }
