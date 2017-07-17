@@ -28,6 +28,8 @@
         </activity>
         <activity android:name=".ui.activity.AdviceActivity">
         </activity>
+        <activity android:name=".ui.activity.VideoDetailActivity">
+        </activity>
     </application>
 
 </manifest>
