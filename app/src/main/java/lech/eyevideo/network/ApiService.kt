@@ -1,6 +1,7 @@
 package lech.eyevideo.network
 
 import io.reactivex.Observable
+import lech.eyevideo.mvp.model.domain.DiscoveryBean
 import lech.eyevideo.mvp.model.domain.HomeBean
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -22,5 +23,10 @@ interface ApiService {
     //获取首页第一页之后的数据  ?date=1499043600000&num=2
     @GET("v2/feed")
     fun getHomeMoreData(@Query("date") date :String, @Query("num") num :String) : Observable<HomeBean>
+
+    //获取发现频道信息
+    @GET("v2/categories?udid=26868b32e808498db32fd51fb422d00175e179df&vc=83")
+    fun getDiscoveryData() : Observable<MutableList<DiscoveryBean>>
+
 
 }
