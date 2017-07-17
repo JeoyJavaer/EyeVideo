@@ -9,18 +9,17 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_home.*
 import lech.eyevideo.R
 import lech.eyevideo.mvp.contract.HomeContract
 import lech.eyevideo.mvp.model.domain.HomeBean
 import lech.eyevideo.mvp.model.domain.ItemListBean
-import lech.eyevideo.mvp.presenter.HomePresenterImpl
-import lech.library.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_home.*
 import lech.eyevideo.mvp.model.domain.VideoBean
+import lech.eyevideo.mvp.presenter.HomePresenterImpl
 import lech.eyevideo.ui.activity.VideoDetailActivity
 import lech.eyevideo.ui.adapter.HomeAdapter
+import lech.library.base.BaseFragment
 import lech.library.base.adapter.QuickAdapter
-import lech.library.delegate.Preference
 import java.util.regex.Pattern
 
 /**
@@ -28,10 +27,10 @@ import java.util.regex.Pattern
  * Description
  * Others
  */
-class HomeFragment :BaseFragment(),HomeContract.View, SwipeRefreshLayout.OnRefreshListener, QuickAdapter.OnItemClickListener {
+class HomeFragment :BaseFragment(),HomeContract.View, SwipeRefreshLayout.OnRefreshListener{
 
-    override fun onItemClick(adapter: QuickAdapter<*, *>?, view: View?, position: Int) {
 
+    val mOnItemClickListener :QuickAdapter.OnItemClickListener? = QuickAdapter.OnItemClickListener { adapter, view, position ->
         val bean = mList[position]
         //跳转视频详情页
         val intent : Intent = Intent(context, VideoDetailActivity::class.java)
@@ -61,6 +60,7 @@ class HomeFragment :BaseFragment(),HomeContract.View, SwipeRefreshLayout.OnRefre
 //        }
         intent.putExtra("data",videoBean as Parcelable)
         context.startActivity(intent)
+
     }
 
 
@@ -103,7 +103,7 @@ class HomeFragment :BaseFragment(),HomeContract.View, SwipeRefreshLayout.OnRefre
         recycleView.adapter=mAdapter
         swipeRefreshLayout.setOnRefreshListener(this)
 
-        mAdapter!!.setOnItemClickListener(this)
+        mAdapter!!.onItemClickListener=mOnItemClickListener
 
         recycleView.addOnScrollListener(object :RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
