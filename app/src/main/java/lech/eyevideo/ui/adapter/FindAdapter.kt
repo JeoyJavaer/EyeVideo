@@ -1,10 +1,9 @@
 package lech.eyevideo.ui.adapter
 
-import android.media.Image
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import lech.eyevideo.R
-import lech.eyevideo.mvp.model.domain.DiscoveryBean
+import lech.eyevideo.mvp.model.domain.FindBean
 import lech.library.base.adapter.BaseViewHolder
 import lech.library.base.adapter.QuickAdapter
 
@@ -13,10 +12,10 @@ import lech.library.base.adapter.QuickAdapter
  * Description
  * Others
  */
-class DiscoveryAdapter(layoutResId:Int, data:MutableList<DiscoveryBean>):QuickAdapter<DiscoveryBean,BaseViewHolder>(layoutResId,data) {
+class FindAdapter(layoutResId:Int, data:MutableList<FindBean>):QuickAdapter<FindBean,BaseViewHolder>(layoutResId,data) {
 
 
-    override fun convert(helper: BaseViewHolder, item: DiscoveryBean) {
+    override fun convert(helper: BaseViewHolder, item: FindBean) {
         helper.setText(R.id.tv_title,item.name)
         val view = helper.getView<ImageView>(R.id.iv_photo)
         Glide.with(mContext).load(item.bgPicture).into(view)

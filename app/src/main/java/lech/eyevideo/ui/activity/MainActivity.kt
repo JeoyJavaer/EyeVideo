@@ -1,6 +1,5 @@
 package lech.eyevideo.ui.activity
 
-import android.os.SystemClock
 import android.view.KeyEvent
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_main.*
@@ -12,7 +11,7 @@ import java.util.*
 
 class MainActivity : BaseActivity() {
     var mHomeFragment: HomeFragment? = null
-    var mDiscoveryFragment: DiscoveryFragment? = null
+    var mDiscoveryFragment: FindFragment? = null
     var mHotFragment: HotFragment? = null
     var mMineFragment: MineFragment? = null
     val dayString = getTodayString()
@@ -69,7 +68,7 @@ class MainActivity : BaseActivity() {
 
     private fun initFragment() {
         mHomeFragment = HomeFragment()
-        mDiscoveryFragment = DiscoveryFragment()
+        mDiscoveryFragment = FindFragment()
         mHotFragment = HotFragment()
         mMineFragment = MineFragment()
 

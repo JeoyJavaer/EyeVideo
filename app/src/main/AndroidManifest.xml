@@ -30,7 +30,7 @@
         </activity>
         <activity android:name=".ui.activity.VideoDetailActivity">
         </activity>
-        <activity android:name=".ui.activity.DiscoveryDetailActivity">
+        <activity android:name=".ui.activity.FindDetailActivity">
         </activity>
     </application>
 
